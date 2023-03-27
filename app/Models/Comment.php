@@ -5,23 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class post extends Model
+class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-
-        'title' , 'content', 'created_at', 'user_id'
-    ];
-
-
+    protected $guarded=[];
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 
     public function user()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
-
-
 }
-
-

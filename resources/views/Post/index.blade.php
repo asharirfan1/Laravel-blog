@@ -43,7 +43,7 @@
                         <tr>
                             <th>Name</th>
                             <th class="pl-6">Content</th>
-                            <th>Publication date</th>
+                            <th class="pl-4">Publication date</th>
 
 
                             <th></th>

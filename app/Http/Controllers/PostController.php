@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\post;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Random\Engine\Mt19937;
 
@@ -11,6 +11,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index( Request $request)
     {
         $search = $request['search'] ?? '';
@@ -27,6 +28,8 @@ class PostController extends Controller
 
         return view('Post.index', compact('posts'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -59,7 +62,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(post $post)
+    public function show(Post $post)
     {
         //
     }
@@ -67,7 +70,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(post $post)
+    public function edit(Post $post)
     {
         return view('Post.edit', compact('post'));
     }
@@ -75,7 +78,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, post $post)
+    public function update(Request $request, Post $post)
     {
 
         $post->update([
@@ -89,7 +92,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(post $post)
+    public function destroy(Post $post)
     {
         $post->delete();
         return redirect()->route('post.index');

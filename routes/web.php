@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\allpostcontroller;
+use App\Http\Controllers\allController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,9 @@ require __DIR__.'/auth.php';
 
 
 Route::resource('post', PostController::class);
+Route::resource('all', allController::class);
+Route::resource('Comment', CommentController::class);
+
+Route::post('comment/{comment}',[CommentController::class,'store'])->name('comment');
+
 

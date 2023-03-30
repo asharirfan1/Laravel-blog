@@ -23,7 +23,7 @@ class allController extends Controller
         }
 
         $posts = Post::all();
-        return view('Post.all', compact('posts'));
+        return view('post.all', compact('posts'));
     }
 
 }

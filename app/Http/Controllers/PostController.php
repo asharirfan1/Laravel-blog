@@ -26,7 +26,7 @@ class PostController extends Controller
         }
 
 
-        return view('Post.index', compact('posts'));
+        return view('post.index', compact('posts'));
     }
 
 
@@ -39,7 +39,7 @@ class PostController extends Controller
         $post = new Post();
         $post->user_id = auth()->user()->id;
 
-        return view('Post.create', compact('post'));
+        return view('post.create', compact('post'));
     }
 
     /**
@@ -47,13 +47,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create([
+
+        $image_path = $this->storeImage($request);
+        $post = Post::create([
             'title' => $request->title,
             'content' => $request->content,
             'user_id' => auth()->user()->id,
+            'image_path' => $image_path
+
 
         ]);
-
 
         return redirect()->route("post.index");
     }
@@ -72,7 +75,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('Post.edit', compact('post'));
+        return view('post.edit', compact('post'));
     }
 
     /**
@@ -97,4 +100,18 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('post.index');
     }
+
+    public function storeImage($request)
+    {
+
+                $newImage = uniqid() . '-' . $request->title . '.' . $request->image->extension();
+
+                 $request->image->move(public_path('images'), $newImage);
+
+      return $newImage;
+
+    }
+
+
+
 }

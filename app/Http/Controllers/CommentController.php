@@ -14,7 +14,7 @@ class CommentController extends Controller
     public function index()
     {
         $comment = Comment::all();
-        return view('Post.allComments', ['comment' => $comment]);
+        return view('post.allComments', compact('comment'));
     }
 
     /**
@@ -30,8 +30,12 @@ class CommentController extends Controller
      */
     public function store(Request $request, int $comment)
     {
+        $request->validate([
+            'comment' => 'required|string|max:255',
+        ]);
+
         Comment::create([
-            'user_id'=>Auth::id(),
+            'user_id'=>Auth::user()->id,
             'post_id'=>$comment,
             'comment'=>$request->comment,
         ]);
@@ -52,7 +56,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        return view('comment.edit', compact('comment'));
     }
 
     /**
@@ -60,7 +64,12 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $comment->update([
+            'comment' => $request->comment,
+        ]);
+        return redirect()->route("Comment.index");
+
+
     }
 
     /**
@@ -68,6 +77,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+        return redirect();
+
     }
 }

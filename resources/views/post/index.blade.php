@@ -46,6 +46,7 @@
                             <th class="pl-4">Publication date</th>
 
 
+
                             <th></th>
                         </tr>
 
@@ -56,6 +57,7 @@
                                 <td>{{$post->title}}</td>
                                 <td class="pl-4">{{$post->content}}</td>
                                 <td class="pl-4 font-semibold">{{$post->created_at}}</td>
+
 
                                 <td><a href="{{ route('post.edit', $post) }}"
                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full ml-4">

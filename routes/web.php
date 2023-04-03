@@ -4,7 +4,20 @@ use App\Http\Controllers\allController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+
+
+Route::get('/greeting/{locale}', function (string $locale) {
+    if (! in_array($locale, ['en', 'es', 'fr'])) {
+        abort(400);
+    }
+
+    App::setLocale($locale);
+
+    // ...
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +33,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -42,4 +59,26 @@ Route::post('comment/{comment}',[CommentController::class,'store'])->name('comme
 Route::get('comment/{comment}/edit',[CommentController::class,'edit']);
 Route::put('comment/{comment}', [CommentController::class, 'update'])->name('comment');
 Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('Comment.destroy');
+
+
+
+
+
+// tags routes
+
+Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
+
+Route::get('/tags/create', [TagController::class, 'create'])->name('tag.create');
+
+Route::post('/tags', [TagController::class, 'store'])->name('tag.store');
+
+Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tag.show');
+
+Route::post('/tags/{tag}/edit', [TagController::class, 'edit'])->name('tag.edit');
+
+Route::put('/tags/{tag}', [TagController::class, 'update'])->name('tag.update');
+
+Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
+
+
 

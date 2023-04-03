@@ -11,6 +11,10 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <a href="{{route('post.create')}}"> Add new post</a>
+                    <br>
+                    <br>
+
+                    <a href="{{route('all.index')}}"> View All posts</a>
 
 
                     <div class="container">
@@ -44,7 +48,7 @@
                             <th>Name</th>
                             <th class="pl-6">Content</th>
                             <th class="pl-4">Publication date</th>
-
+                            <th class="pl-4">Created_with_tags</th>
 
 
                             <th></th>
@@ -57,6 +61,12 @@
                                 <td>{{$post->title}}</td>
                                 <td class="pl-4">{{$post->content}}</td>
                                 <td class="pl-4 font-semibold">{{$post->created_at}}</td>
+
+                                <td>
+                                    @foreach($post->tags as $tag)
+                                        <span class=" pl-10 whitespace-nowrap">{{$tag->tag_name}}</span>
+                                    @endforeach
+                                </td>
 
 
                                 <td><a href="{{ route('post.edit', $post) }}"
@@ -81,6 +91,7 @@
 
                             </tr>
                         @endforeach
+
 
                         </tbody>
                     </table>

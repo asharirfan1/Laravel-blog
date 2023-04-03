@@ -6,6 +6,17 @@
 
         <title>Laravel</title>
 
+        <div>
+            <ul>
+                <li>{{__('welcome.welcome')}}</li>
+                <li>{{__('welcome.about')}}</li>
+                <li>{{__('welcome.contact')}}</li>
+
+            </ul>
+        </div>
+
+
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />

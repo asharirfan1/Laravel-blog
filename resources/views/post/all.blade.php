@@ -10,6 +10,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    <a href="{{route('Comment.index')}}" class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150">
+                        View All comments</a>
+
                     <div class="container">
 
                         <div class="row height d-flex justify-content-center align-items-center">
@@ -34,6 +38,8 @@
                                         <th class="pl-10">Publication date</th>
                                         <th class="pl-10">Published by</th>
                                         <th class="pl-4">Image</th>
+                                        <th class="pl-4">Tags</th>
+
 
 
                                     </tr>
@@ -49,7 +55,13 @@
                                             <td class="pl-10">{{ $post->user->name }}</td>
                                             <td class="pl-10"><img src="{{asset('images/'. $post->image_path )}}"></td>
 
-                                            <td class="pl-10"><img src="{{asset('images/' . $post->image_path)}}"></td>
+                                            <td class="pl-4">
+                                                @foreach ($post->tags as $tag)
+
+                                                    <span class="pl-6" style="white-space: nowrap">{{ $tag->tag_name }}</span>
+                                                @endforeach
+                                            </td>
+
 
 
                                             <td>
@@ -58,15 +70,16 @@
                                                         @csrf
 
                                                         <div>
+                                                            <br>
                                                             <label for="comment"
-                                                                   class="block font-medium text-sm text-gray-700 dark:text-gray-300">Comment:</label>
+                                                                   class="block font-medium text-sm text-gray-700 dark:text-gray-300 pl-6">Comment:</label>
                                                             <textarea id="comment"
-                                                                      class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                                                                      class=" ml-6 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
                                                                       name="comment"></textarea>
                                                         </div>
 
                                                         <button type="submit"
-                                                                class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                                                                class=" ml-10 inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
                                                             Submit Comment
                                                         </button>
                                                     </form>

@@ -22,4 +22,13 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    //for sending mail to post owner
+
+    public function postOwner()
+    {
+        return $this->belongsTo(User::class , 'post_id' , 'id');
+    }
+
+
 }

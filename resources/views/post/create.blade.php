@@ -36,12 +36,25 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select name="category[]" multiple class="form-control" id="categories">
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}  </option>
+                                @endforeach
+                            </select>
+                        </div>
 
+                  {{--      <div class="col-md-12  mb-3">
+                            <label for="cat_image" class="form-label">Category Image</label>
+                            <input type="file" name="image" class="form-control rounded border border-secondary mr-2">
+                            <small class="text-danger">{{ $errors->first('image') }}</small>
+                        </div>--}}
 
 
 
                         <div class="col-md-12  mb-3">
-                            <label for="image" class="form-label">Image</label>
+                            <label for="image" class="form-label">Post Image</label>
                             <input type="file" name="image" class="form-control rounded border border-secondary mr-2">
                             <small class="text-danger">{{ $errors->first('image') }}</small>
                         </div>

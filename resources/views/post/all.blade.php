@@ -38,7 +38,9 @@
                                         <th class="pl-10">Publication date</th>
                                         <th class="pl-10">Published by</th>
                                         <th class="pl-4">Image</th>
+
                                         <th class="pl-4">Tags</th>
+
 
 
 
@@ -54,6 +56,7 @@
                                             <td class="pl-10">{{ $post->created_at }}</td>
                                             <td class="pl-10">{{ $post->user->name }}</td>
                                             <td class="pl-10"><img src="{{asset('images/'. $post->image_path )}}"></td>
+
 
                                             <td class="pl-4">
                                                 @foreach ($post->tags as $tag)

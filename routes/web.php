@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\allController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -57,28 +58,63 @@ Route::resource('Comment', CommentController::class);
 
 Route::post('comment/{comment}',[CommentController::class,'store'])->name('comment');
 Route::get('comment/{comment}/edit',[CommentController::class,'edit']);
-Route::put('comment/{comment}', [CommentController::class, 'update'])->name('comment');
-Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('Comment.destroy');
+Route::put('comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
+Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('Comment.d');
 
 
 
 
 
-// tags routes
+            // tags routes
 
-Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
+                    Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
 
-Route::get('/tags/create', [TagController::class, 'create'])->name('tag.create');
+                    Route::get('/tags/create', [TagController::class, 'create'])->name('tag.create');
 
-Route::post('/tags', [TagController::class, 'store'])->name('tag.store');
+                    Route::post('/tags', [TagController::class, 'store'])->name('tag.store');
 
-Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tag.show');
+                    Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tag.show');
 
-Route::post('/tags/{tag}/edit', [TagController::class, 'edit'])->name('tag.edit');
+                    Route::post('/tags/{tag}/edit', [TagController::class, 'edit'])->name('tag.edit');
 
-Route::put('/tags/{tag}', [TagController::class, 'update'])->name('tag.update');
+                    Route::put('/tags/{tag}', [TagController::class, 'update'])->name('tag.update');
 
-Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
+                    Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
+
+
+
+    //routing for emial
+
+
+     Route::get('/email' , function (){
+        return new \App\Mail\CommentMail();
+       });
+
+
+
+                    //Cetegory routes
+
+                    Route::get('categories' , [CategoryController::class, 'index'])->name('category.index');
+
+                    Route::get('categories/create' , [CategoryController::class, 'create'])->name('category.create');
+
+
+                    Route::Post('categories/store' , [CategoryController::class, 'store'])->name('category.store');
+
+                    Route::get('/categories/show/{category}', [CategoryController::class, 'show'])->name('category.show');
+
+
+
+                    Route::get('categories/edit/{category}/edit' , [CategoryController::class, 'edit'])->name('category.edit');
+
+                    Route::put('categories/update/{category}' , [CategoryController::class, 'update'])->name('category.update');
+
+
+                    Route::Delete('categories/delete/{category}' , [CategoryController::class, 'destroy'])->name('category.destroy');
+
+                    Route::get('/filter', [CategoryController::class,'filter'])->name('filter.fil');
+
+                    Route::post('category-import',[CategoryController::class , 'import'])->name('category.import');
 
 
 

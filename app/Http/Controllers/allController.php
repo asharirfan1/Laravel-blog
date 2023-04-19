@@ -6,6 +6,8 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Null_;
 
+
+// this is all psot index page
 class allController extends Controller
 {
     public function index(Request $request)

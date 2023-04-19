@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CommentMail;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+
+//use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller
 {
@@ -30,16 +34,24 @@ class CommentController extends Controller
      */
     public function store(Request $request, int $comment)
     {
-        $request->validate([
+
+        $data = request()->validate([
             'comment' => 'required|string|max:255',
         ]);
 
-        Comment::create([
+        $comment = Comment::create([
             'user_id'=>Auth::user()->id,
             'post_id'=>$comment,
             'comment'=>$request->comment,
         ]);
-            return redirect('all');
+        $postOwner = $comment->post->user;
+
+
+//        Mail::to($request->user())->send(new CommentMail($comment));
+        Mail::to($postOwner->email)->send(new CommentMail($comment));
+
+
+        return redirect('all');
 
     }
 
@@ -78,7 +90,7 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         $comment->delete();
-        return redirect();
+        return redirect()->route('Comment.index');
 
     }
 }

@@ -49,7 +49,7 @@
 
 
 
-                                                <form method="POST" action="{{route('Comment.destroy',$comment)}}">
+                                                <form method="POST" action="{{route('Comment.d',$comment)}}">
                                                     @csrf
                                                     @method('Delete')
 
